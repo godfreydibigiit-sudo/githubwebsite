@@ -1,0 +1,126 @@
+{% load static %}
+{% load i18n %}
+
+<header class="navbar navbar-expand-lg navbar-dark fixed-top" role="navigation" aria-label="Main navigation">
+    <div class="container">
+        <!-- Logo / Brand -->
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'pages:home' %}" aria-label="{% trans 'Go to homepage' %}">
+            {% if site_settings.logo_dark and current_theme == 'dark' %}
+                <img src="{{ site_settings.logo_dark.url }}" alt="{{ site_settings.project_name }}" height="40" class="me-2">
+            {% elif site_settings.logo_light and current_theme == 'light' %}
+                <img src="{{ site_settings.logo_light.url }}" alt="{{ site_settings.project_name }}" height="40" class="me-2">
+            {% else %}
+                <i class="fas fa-palette text-accent me-2 fs-4"></i>
+            {% endif %}
+            <span>
+                {% if LANGUAGE_CODE == 'sw' and site_settings.project_name_sw %}
+                    {{ site_settings.project_name_sw }}
+                {% else %}
+                    {{ site_settings.project_name|default:'HCI<span class="brand-accent">Portfolio</span>'|safe }}
+                {% endif %}
+            </span>
+        </a>
+        
+        <!-- Mobile Toggle -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" 
+                aria-controls="mainNavbar" aria-expanded="false" aria-label="{% trans 'Toggle navigation' %}">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Navigation Links -->
+        <nav class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" 
+                       href="{% url 'pages:home' %}">
+                        <i class="fas fa-home me-1 d-lg-none"></i> {% trans "Home" %}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" 
+                       href="{% url 'pages:about' %}">
+                        <i class="fas fa-info-circle me-1 d-lg-none"></i> {% trans "About" %}
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="designDropdown" role="button" 
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-pencil-ruler me-1 d-lg-none"></i> {% trans "Design" %}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="designDropdown">
+                        <li><a class="dropdown-item" href="{% url 'requirements:list' %}">
+                            <i class="fas fa-list-check me-2 text-accent"></i> {% trans "Requirements" %}
+                        </a></li>
+                        <li><a class="dropdown-item" href="{% url 'research:list' %}">
+                            <i class="fas fa-search me-2 text-accent"></i> {% trans "Research" %}
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'prototypes:low_fidelity_list' %}">
+                            <i class="fas fa-pencil me-2 text-accent"></i> {% trans "Low-Fidelity" %}
+                        </a></li>
+                        <li><a class="dropdown-item" href="{% url 'prototypes:medium_fidelity_list' %}">
+                            <i class="fas fa-wireframe me-2 text-accent"></i> {% trans "Medium-Fidelity" %}
+                        </a></li>
+                        <li><a class="dropdown-item" href="{% url 'prototypes:high_fidelity_list' %}">
+                            <i class="fas fa-desktop me-2 text-accent"></i> {% trans "High-Fidelity" %}
+                        </a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if 'evaluation' in request.resolver_match.url_name %}active{% endif %}" 
+                       href="{% url 'evaluations:list' %}">
+                        <i class="fas fa-clipboard-check me-1 d-lg-none"></i> {% trans "Evaluation" %}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'poster' %}active{% endif %}" 
+                       href="{% url 'evaluations:poster' %}">
+                        <i class="fas fa-image me-1 d-lg-none"></i> {% trans "Poster" %}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'list' and 'team' in request.path %}active{% endif %}" 
+                       href="{% url 'team:list' %}">
+                        <i class="fas fa-users me-1 d-lg-none"></i> {% trans "Team" %}
+                    </a>
+                </li>
+                
+                <!-- Theme Toggle -->
+                <li class="nav-item ms-lg-3">
+                    <button class="theme-toggle" id="themeToggle" aria-label="{% trans 'Toggle theme' %}" 
+                            title="{% trans 'Switch theme' %}">
+                        {% if current_theme == 'dark' %}
+                            <i class="fas fa-sun"></i>
+                        {% else %}
+                            <i class="fas fa-moon"></i>
+                        {% endif %}
+                    </button>
+                </li>
+                
+                <!-- Language Switcher -->
+                <li class="nav-item ms-lg-2">
+                    <form action="{% url 'set_language' %}" method="post" class="language-switcher">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.path }}">
+                        <select name="language" onchange="this.form.submit()" 
+                                aria-label="{% trans 'Select language' %}">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}" 
+                                        {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
+                                    {% if language.code == 'en' %}🇬🇧{% else %}🇹🇿{% endif %}
+                                    {{ language.name_local }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Spacer for fixed header -->
+<div style="height: var(--header-height, 80px);"></div>

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "High-Fidelity Prototype" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <!-- Page Header -->
+    <section class="page-header section-padding bg-primary-custom">
+        <div class="container text-center" data-aos="fade-up">
+            <span class="section-label">{% trans "Prototypes" %}</span>
+            <h1 class="section-title">{% trans "High-Fidelity Prototype" %}</h1>
+            <div class="gradient-divider"></div>
+            <p class="section-subtitle">{% trans "Final UI screens with complete styling, interactions, and design system." %}</p>
+        </div>
+    </section>
+    
+    <!-- Prototype Screens -->
+    <section class="section-padding bg-secondary-custom">
+        <div class="container">
+            <!-- Featured Screens -->
+            {% for prototype in prototypes %}
+                {% if prototype.is_featured %}
+                    <div class="row align-items-center mb-5" data-aos="fade-up">
+                        <div class="col-lg-7">
+                            <div class="prototype-card rounded overflow-hidden shadow-lg">
+                                <img src="{{ prototype.screenshot.url }}" 
+                                     alt="{{ prototype.page_name }}" 
+                                     class="w-100">
+                            </div>
+                        </div>
+                        <div class="col-lg-5 mt-4 mt-lg-0">
+                            <span class="badge bg-accent text-white mb-2">{% trans "Featured" %}</span>
+                            <h3>{% if LANGUAGE_CODE == 'sw' and prototype.title_sw %}{{ prototype.title_sw }}{% else %}{{ prototype.title }}{% endif %}</h3>
+                            <p class="text-muted">{{ prototype.description|truncatewords:30 }}</p>
+                            <a href="{% url 'prototypes:high_fidelity_detail' prototype.pk %}" 
+                               class="btn btn-primary">
+                                <i class="fas fa-eye me-1"></i> {% trans "View Full Screen" %}
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            <!-- All Screens Grid -->
+            <div class="row g-4">
+                {% for prototype in prototypes %}
+                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:50 }}">
+                        <div class="card prototype-card h-100 overflow-hidden">
+                            <img src="{{ prototype.screenshot.url }}" 
+                                 alt="{{ prototype.page_name }}" 
+                                 class="w-100" style="height: 250px; object-fit: cover;">
+                            <div class="overlay">
+                                <a href="{% url 'prototypes:high_fidelity_detail' prototype.pk %}" 
+                                   class="btn btn-primary btn-sm">
+                                    <i class="fas fa-search-plus me-1"></i> {% trans "View Details" %}
+                                </a>
+                            </div>
+                            <div class="card-body p-3">
+                                <h6 class="mb-1">{% if LANGUAGE_CODE == 'sw' and prototype.title_sw %}{{ prototype.title_sw }}{% else %}{{ prototype.title }}{% endif %}</h6>
+                                <small class="text-muted">{{ prototype.get_screen_type_display }}</small>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="col-12 text-center" data-aos="fade-up">
+                        <div class="card p-5">
+                            <i class="fas fa-desktop fa-3x text-muted mb-3"></i>
+                            <h5>{% trans "No High-Fidelity Prototypes Yet" %}</h5>
+                            <p class="text-muted">{% trans "Final UI screens will be displayed here once completed." %}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

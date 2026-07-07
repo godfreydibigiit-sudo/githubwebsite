@@ -1,0 +1,41 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ evaluation.title }} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<section class="page-header section-padding bg-primary-custom">
+    <div class="container text-center" data-aos="fade-up">
+        <span class="section-label">{% trans "Evaluation Details" %}</span>
+        <h1 class="section-title">{{ evaluation.title }}</h1>
+        <div class="gradient-divider"></div>
+    </div>
+</section>
+
+<section class="section-padding bg-secondary-custom">
+    <div class="container">
+        <div class="row mb-4" data-aos="fade-up">
+            <div class="col-md-3"><div class="card text-center p-3"><strong>{% trans "Method" %}</strong><br><small class="text-muted">{{ evaluation.get_method_display }}</small></div></div>
+            <div class="col-md-3"><div class="card text-center p-3"><strong>{% trans "Date" %}</strong><br><small class="text-muted">{{ evaluation.date_conducted }}</small></div></div>
+            <div class="col-md-3"><div class="card text-center p-3"><strong>{% trans "Evaluators" %}</strong><br><small class="text-muted">{{ evaluation.number_of_evaluators }}</small></div></div>
+            <div class="col-md-3"><div class="card text-center p-3"><strong>{% trans "Problems" %}</strong><br><small class="text-muted">{{ evaluation.total_problems_found }}</small></div></div>
+        </div>
+        
+        <div class="card p-4 mb-4" data-aos="fade-up">
+            <h4>{% trans "Evaluators" %}</h4>
+            <p class="text-muted">{{ evaluation.evaluators|linebreaks }}</p>
+        </div>
+        
+        <div class="card p-4" data-aos="fade-up">
+            <h4>{% trans "Summary" %}</h4>
+            <p class="text-muted">{{ evaluation.summary }}</p>
+            {% if evaluation.full_report_link %}
+                <a href="{{ evaluation.full_report_link }}" target="_blank" class="btn btn-primary">
+                    <i class="fas fa-file-pdf me-2"></i>{% trans "Full Report" %}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

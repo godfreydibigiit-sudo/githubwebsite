@@ -1,0 +1,126 @@
+﻿/* ============================================
+   ADMIN LIGHT THEME - IT.CO.TZ Light Mode
+   ============================================ */
+
+/* Theme Variables */
+body.theme-flatly,
+body.sidebar-light-cyan {
+    --admin-bg: #F8F9FA;
+    --admin-bg-secondary: #FFFFFF;
+    --admin-text: #212529;
+    --admin-text-secondary: #6C757D;
+    --admin-border: #DEE2E6;
+    --admin-accent: #0097A7;
+    --admin-accent-light: rgba(0, 151, 167, 0.1);
+    --admin-gradient: linear-gradient(135deg, #0097A7 0%, #C2185B 100%);
+}
+
+/* Light Mode Overrides */
+body.sidebar-light-cyan .main-sidebar {
+    background: #FFFFFF !important;
+    border-right: 1px solid #DEE2E6 !important;
+}
+
+body.sidebar-light-cyan .brand-link {
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #DEE2E6 !important;
+}
+
+body.sidebar-light-cyan .brand-link .brand-text {
+    color: #212529 !important;
+}
+
+body.sidebar-light-cyan .nav-sidebar .nav-link {
+    color: #6C757D !important;
+}
+
+body.sidebar-light-cyan .nav-sidebar .nav-link:hover {
+    color: #0097A7 !important;
+    background: rgba(0, 151, 167, 0.05) !important;
+}
+
+body.sidebar-light-cyan .nav-sidebar .nav-link.active {
+    background: linear-gradient(135deg, #0097A7, #C2185B) !important;
+    color: #FFFFFF !important;
+}
+
+body.sidebar-light-cyan .nav-header {
+    color: #ADB5BD !important;
+}
+
+body.sidebar-light-cyan .nav-icon {
+    color: #ADB5BD;
+}
+
+body.navbar-white .main-header {
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #DEE2E6 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+body.navbar-white .main-header .nav-link {
+    color: #6C757D !important;
+}
+
+body.theme-flatly .content-wrapper {
+    background: #F8F9FA !important;
+}
+
+body.theme-flatly .card {
+    background: #FFFFFF !important;
+    border-color: #DEE2E6 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+body.theme-flatly .card-header {
+    background: #F8F9FA !important;
+    border-bottom: 1px solid #DEE2E6 !important;
+}
+
+body.theme-flatly .table {
+    color: #212529 !important;
+}
+
+body.theme-flatly .table thead th {
+    border-bottom-color: #DEE2E6 !important;
+    color: #212529 !important;
+}
+
+body.theme-flatly .form-control {
+    background: #FFFFFF !important;
+    border-color: #DEE2E6 !important;
+    color: #212529 !important;
+}
+
+/* Theme Switcher Button */
+.theme-switcher-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-switcher-btn:hover {
+    background: linear-gradient(135deg, #00E5FF, #E91E63) !important;
+    color: #FFFFFF !important;
+    border-color: transparent !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 229, 255, 0.3);
+}
+
+.theme-switcher-btn i {
+    transition: transform 0.5s ease;
+}
+
+.theme-switcher-btn:hover i {
+    transform: rotate(360deg);
+}
+
+/* Animation for theme transition */
+.content-wrapper,
+.main-sidebar,
+.main-header,
+.card {
+    transition: background-color 0.3s ease, 
+                color 0.3s ease, 
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}

@@ -1,0 +1,365 @@
+# Swahili translations for HCI Portfolio.
+msgid ""
+msgstr ""
+"Project-Id-Version: HCI Portfolio 1.0\n"
+"Language: sw\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Home"
+msgstr "Nyumbani"
+
+msgid "About"
+msgstr "Kuhusu"
+
+msgid "Design"
+msgstr "Usanifu"
+
+msgid "Requirements"
+msgstr "Mahitaji"
+
+msgid "Research"
+msgstr "Utafiti"
+
+msgid "Low-Fidelity"
+msgstr "Uaminifu wa Chini"
+
+msgid "Medium-Fidelity"
+msgstr "Uaminifu wa Kati"
+
+msgid "High-Fidelity"
+msgstr "Uaminifu wa Juu"
+
+msgid "Evaluation"
+msgstr "Tathmini"
+
+msgid "Poster"
+msgstr "Bango"
+
+msgid "Team"
+msgstr "Timu"
+
+msgid "Toggle theme"
+msgstr "Badilisha mandhari"
+
+msgid "Switch theme"
+msgstr "Badilisha mwonekano"
+
+msgid "Select language"
+msgstr "Chagua lugha"
+
+msgid "View Case Study"
+msgstr "Tazama Uchunguzi"
+
+msgid "Meet the Team"
+msgstr "Kutana na Timu"
+
+msgid "Scroll to explore"
+msgstr "Tembeza kuchunguza"
+
+msgid "Introduction"
+msgstr "Utangulizi"
+
+msgid "About This Project"
+msgstr "Kuhusu Mradi Huu"
+
+msgid "Problem"
+msgstr "Tatizo"
+
+msgid "Target Users"
+msgstr "Watumiaji Walengwa"
+
+msgid "Programme"
+msgstr "Programu"
+
+msgid "Design Process"
+msgstr "Mchakato wa Usanifu"
+
+msgid "Our Methodology"
+msgstr "Mbinu Zetu"
+
+msgid "Prototypes"
+msgstr "Mifano"
+
+msgid "Learn More"
+msgstr "Jifunze Zaidi"
+
+msgid "View Full Team"
+msgstr "Tazama Timu Nzima"
+
+msgid "Team members will be added soon."
+msgstr "Wanachama wa timu wataongezwa hivi karibuni."
+
+msgid "System Overview"
+msgstr "Muhtasari wa Mfumo"
+
+msgid "What is This Project?"
+msgstr "Mradi Huu ni Nini?"
+
+msgid "Why This Project Exists"
+msgstr "Kwa Nini Mradi Huu Upo"
+
+msgid "Objectives"
+msgstr "Malengo"
+
+msgid "Project Objectives"
+msgstr "Malengo ya Mradi"
+
+msgid "Users"
+msgstr "Watumiaji"
+
+msgid "Target User Groups"
+msgstr "Vikundi vya Watumiaji Walengwa"
+
+msgid "System Requirements"
+msgstr "Mahitaji ya Mfumo"
+
+msgid "Functional"
+msgstr "Ya Kazi"
+
+msgid "Functional Requirements"
+msgstr "Mahitaji ya Kazi"
+
+msgid "Non-Functional"
+msgstr "Yasiyo ya Kazi"
+
+msgid "Non-Functional Requirements"
+msgstr "Mahitaji Yasiyo ya Kazi"
+
+msgid "Competitor Analysis"
+msgstr "Uchambuzi wa Washindani"
+
+msgid "Existing Systems"
+msgstr "Mifumo Iliyopo"
+
+msgid "Strengths"
+msgstr "Nguvu"
+
+msgid "Weaknesses"
+msgstr "Udhaifu"
+
+msgid "Visit Website"
+msgstr "Tembelea Tovuti"
+
+msgid "Problems Discovered"
+msgstr "Matatizo Yaliyogunduliwa"
+
+msgid "Opportunities"
+msgstr "Fursa"
+
+msgid "Low-Fidelity Prototypes"
+msgstr "Mifano ya Uaminifu wa Chini"
+
+msgid "Medium-Fidelity Prototypes"
+msgstr "Mifano ya Uaminifu wa Kati"
+
+msgid "High-Fidelity Prototype"
+msgstr "Mfano wa Uaminifu wa Juu"
+
+msgid "View Details"
+msgstr "Tazama Maelezo"
+
+msgid "Featured"
+msgstr "Iliyoangaziwa"
+
+msgid "View Full Screen"
+msgstr "Tazama Skrini Nzima"
+
+msgid "Improvements from Low-Fi"
+msgstr "Maboresho kutoka Uaminifu wa Chini"
+
+msgid "Design Prototypes"
+msgstr "Mifano ya Usanifu"
+
+msgid "View Sketches"
+msgstr "Tazama Michoro"
+
+msgid "View Wireframes"
+msgstr "Tazama Wireframe"
+
+msgid "View Final Design"
+msgstr "Tazama Usanifu wa Mwisho"
+
+msgid "Heuristic Evaluation"
+msgstr "Tathmini ya Kiheuristic"
+
+msgid "Date"
+msgstr "Tarehe"
+
+msgid "Evaluators"
+msgstr "Watahini"
+
+msgid "Duration"
+msgstr "Muda"
+
+msgid "Problems Found"
+msgstr "Matatizo Yaliyopatikana"
+
+msgid "Evaluation Findings"
+msgstr "Matokeo ya Tathmini"
+
+msgid "Recommendation"
+msgstr "Pendekezo"
+
+msgid "Before"
+msgstr "Kabla"
+
+msgid "After"
+msgstr "Baada"
+
+msgid "Why This Change?"
+msgstr "Kwa Nini Mabadiliko Haya?"
+
+msgid "Changes Made"
+msgstr "Mabadiliko Yaliyofanywa"
+
+msgid "Nielsen's 10 Heuristics"
+msgstr "Heuristic 10 za Nielsen"
+
+msgid "Method"
+msgstr "Mbinu"
+
+msgid "Full Report"
+msgstr "Ripoti Kamili"
+
+msgid "Project Poster"
+msgstr "Bango la Mradi"
+
+msgid "Download Poster"
+msgstr "Pakua Bango"
+
+msgid "Solution"
+msgstr "Suluhisho"
+
+msgid "Project Team Members"
+msgstr "Wanachama wa Timu ya Mradi"
+
+msgid "Team Leader"
+msgstr "Kiongozi wa Timu"
+
+msgid "Contribution"
+msgstr "Mchango"
+
+msgid "Read Bio"
+msgstr "Soma Wasifu"
+
+msgid "Role Description"
+msgstr "Maelezo ya Jukumu"
+
+msgid "Skills"
+msgstr "Ujuzi"
+
+msgid "Bio"
+msgstr "Wasifu"
+
+msgid "Reg No"
+msgstr "Namba ya Usajili"
+
+msgid "Previous"
+msgstr "Iliyopita"
+
+msgid "Next"
+msgstr "Ifuatayo"
+
+msgid "Completed"
+msgstr "Imekamilika"
+
+msgid "In Progress"
+msgstr "Inaendelea"
+
+msgid "Pending"
+msgstr "Inasubiri"
+
+msgid "HCI Portfolio"
+msgstr "Kwingiko la HCI"
+
+msgid "HCI Design Case Study"
+msgstr "Uchunguzi wa Usanifu wa HCI"
+
+msgid "Go to homepage"
+msgstr "Nenda kwenye ukurasa wa kwanza"
+
+msgid "Toggle navigation"
+msgstr "Badilisha urambazaji"
+
+msgid "Back to top"
+msgstr "Rudi juu"
+
+msgid "Design Evolution"
+msgstr "Mageuzi ya Usanifu"
+
+msgid "Design Iterations"
+msgstr "Marudio ya Usanifu"
+
+msgid "Evaluation Details"
+msgstr "Maelezo ya Tathmini"
+
+msgid "Finding"
+msgstr "Ugunduzi"
+
+msgid "Evaluation Finding"
+msgstr "Ugunduzi wa Tathmini"
+
+msgid "Design Rationale"
+msgstr "Mantiki ya Usanifu"
+
+msgid "User Interactions"
+msgstr "Mwingiliano wa Mtumiaji"
+
+msgid "Navigation Flow"
+msgstr "Mtiririko wa Urambazaji"
+
+msgid "Connected Screens"
+msgstr "Skrini Zilizounganishwa"
+
+msgid "Color Palette"
+msgstr "Rangi Zilizotumika"
+
+msgid "Typography"
+msgstr "Muundo wa Maandishi"
+
+msgid "Interactions"
+msgstr "Mwingiliano"
+
+msgid "Design System Notes"
+msgstr "Maelezo ya Mfumo wa Usanifu"
+
+msgid "Key Features"
+msgstr "Vipengele Muhimu"
+
+msgid "UI/UX Analysis"
+msgstr "Uchambuzi wa UI/UX"
+
+msgid "Description"
+msgstr "Maelezo"
+
+msgid "Summary"
+msgstr "Muhtasari"
+
+msgid "Reason for change"
+msgstr "Sababu ya mabadiliko"
+
+msgid "Why These Changes"
+msgstr "Kwa Nini Mabadiliko Haya"
+
+msgid "Hand-drawn sketches and paper wireframes"
+msgstr "Michoro ya mkono na wireframe za karatasi"
+
+msgid "Digital wireframes with navigation flows"
+msgstr "Wireframe za kidijitali zenye mtiririko wa urambazaji"
+
+msgid "Final polished UI screens"
+msgstr "Skrini za mwisho za UI zilizokamilika"
+
+msgid "Our design process across three fidelity levels."
+msgstr "Mchakato wetu wa usanifu katika viwango vitatu vya uaminifu."
+
+msgid "Track our design changes and improvements across iterations."
+msgstr "Fuatilia mabadiliko yetu ya usanifu na maboresho katika marudio."
+
+msgid "No design iterations recorded yet."
+msgstr "Hakuna marudio ya usanifu yaliyorekodiwa bado."
+
+msgid "Evolved into Medium-Fidelity"
+msgstr "Imeibuka kuwa Uaminifu wa Kati"

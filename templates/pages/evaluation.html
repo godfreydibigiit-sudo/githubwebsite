@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Heuristic Evaluation" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <!-- Page Header -->
+    <section class="page-header section-padding bg-primary-custom">
+        <div class="container text-center" data-aos="fade-up">
+            <span class="section-label">{% trans "Evaluation" %}</span>
+            <h1 class="section-title">{% trans "Heuristic Evaluation" %}</h1>
+            <div class="gradient-divider"></div>
+            <p class="section-subtitle">{% trans "Expert review using Nielsen's 10 Usability Heuristics with before/after comparisons." %}</p>
+        </div>
+    </section>
+    
+    <!-- Evaluation Overview -->
+    {% if evaluation %}
+        <section class="section-padding bg-secondary-custom">
+            <div class="container">
+                <div class="row g-4 mb-5" data-aos="fade-up">
+                    <div class="col-md-3">
+                        <div class="card text-center p-4">
+                            <i class="fas fa-calendar-check fa-2x text-accent mb-3"></i>
+                            <h6>{% trans "Date" %}</h6>
+                            <p class="text-muted mb-0">{{ evaluation.date_conducted }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center p-4">
+                            <i class="fas fa-users fa-2x text-accent mb-3"></i>
+                            <h6>{% trans "Evaluators" %}</h6>
+                            <p class="text-muted mb-0">{{ evaluation.number_of_evaluators }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center p-4">
+                            <i class="fas fa-clock fa-2x text-accent mb-3"></i>
+                            <h6>{% trans "Duration" %}</h6>
+                            <p class="text-muted mb-0">{{ evaluation.session_duration }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center p-4">
+                            <i class="fas fa-exclamation-triangle fa-2x text-accent mb-3"></i>
+                            <h6>{% trans "Problems Found" %}</h6>
+                            <p class="text-muted mb-0">{{ evaluation.total_problems_found }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+    
+    <!-- Findings with Before/After -->
+    <section class="section-padding bg-primary-custom">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">{% trans "Evaluation Findings" %}</h2>
+                <div class="gradient-divider"></div>
+            </div>
+            
+            {% for finding in findings %}
+                <div class="finding-card card mb-4 severity-{{ finding.severity }}" 
+                     data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:50 }}">
+                    <div class="card-body p-4">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="d-flex align-items-start gap-3 mb-3">
+                                    <span class="severity-badge bg-{% if finding.severity == 'catastrophic' %}dark{% elif finding.severity == 'major' %}danger{% elif finding.severity == 'minor' %}warning{% else %}info{% endif %} text-white">
+                                        {{ finding.get_severity_display }}
+                                    </span>
+                                    <div>
+                                        <h5 class="mb-1">Finding #{{ finding.finding_number }}: {{ finding.problem_title }}</h5>
+                                        <p class="text-muted small mb-2">
+                                            <i class="fas fa-map-marker-alt me-1"></i> {{ finding.screen_location }}
+                                            <span class="mx-2">|</span>
+                                            <i class="fas fa-user me-1"></i> {{ finding.discovered_by }}
+                                            {% if finding.heuristic_violated %}
+                                                <span class="mx-2">|</span>
+                                                <i class="fas fa-bookmark me-1"></i> {{ finding.heuristic_violated.name }}
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="text-muted">{{ finding.problem_description }}</p>
+                                
+                                <div class="bg-accent-light rounded p-3 mt-3">
+                                    <h6 class="text-accent mb-2"><i class="fas fa-lightbulb me-1"></i> {% trans "Recommendation" %}</h6>
+                                    <p class="text-muted small mb-0">{{ finding.recommendation }}</p>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-4 mt-4 mt-lg-0">
+                                <div class="before-after-card">
+                                    <div class="image-wrapper">
+                                        <span class="label before">{% trans "Before" %}</span>
+                                        <img src="{{ finding.before_screenshot.url }}" 
+                                             alt="{% trans 'Before fix' %}">
+                                    </div>
+                                    <div class="image-wrapper">
+                                        <span class="label after">{% trans "After" %}</span>
+                                        <img src="{{ finding.after_screenshot.url }}" 
+                                             alt="{% trans 'After fix' %}">
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <h6 class="text-accent small">{% trans "Why This Change?" %}</h6>
+                                    <p class="text-muted small mb-0">{{ finding.why_changes_were_made|truncatewords:20 }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="text-center" data-aos="fade-up">
+                    <div class="card p-5">
+                        <i class="fas fa-clipboard-check fa-3x text-muted mb-3"></i>
+                        <h5>{% trans "No Evaluation Findings Yet" %}</h5>
+                        <p class="text-muted">{% trans "Heuristic evaluation results will be displayed here once completed." %}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    
+    <!-- Nielsen's Heuristics Reference -->
+    <section class="section-padding bg-secondary-custom">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">{% trans "Nielsen's 10 Heuristics" %}</h2>
+                <div class="gradient-divider"></div>
+            </div>
+            
+            <div class="row g-4">
+                {% for heuristic in heuristics %}
+                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:50 }}">
+                        <div class="card h-100 p-4">
+                            <div class="d-flex align-items-start">
+                                <span class="badge bg-accent text-white me-3 mt-1">H{{ heuristic.number }}</span>
+                                <div>
+                                    <h6>{{ heuristic.name }}</h6>
+                                    <p class="text-muted small mb-0">{{ heuristic.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

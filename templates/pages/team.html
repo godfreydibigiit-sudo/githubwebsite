@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Team" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <!-- Page Header -->
+    <section class="page-header section-padding bg-primary-custom">
+        <div class="container text-center" data-aos="fade-up">
+            <span class="section-label">{% trans "The Team" %}</span>
+            <h1 class="section-title">{% trans "Project Team Members" %}</h1>
+            <div class="gradient-divider"></div>
+            <p class="section-subtitle">{% trans "Meet the dedicated team behind this HCI design project." %}</p>
+        </div>
+    </section>
+    
+    <!-- Team Grid -->
+    <section class="section-padding bg-secondary-custom">
+        <div class="container">
+            {% if team_leader %}
+                <div class="row justify-content-center mb-5" data-aos="fade-up">
+                    <div class="col-lg-6">
+                        <div class="card p-4 text-center">
+                            <span class="badge bg-accent text-white mb-3 px-3 py-2">
+                                <i class="fas fa-crown me-2"></i> {% trans "Team Leader" %}
+                            </span>
+                            <div class="team-card">
+                                {% if team_leader.photo %}
+                                    <img src="{{ team_leader.photo.url }}" alt="{{ team_leader.full_name }}" 
+                                         class="member-photo mx-auto mb-3" style="width: 150px; height: 150px;">
+                                {% else %}
+                                    <div class="member-photo mx-auto mb-3 bg-accent-light d-flex align-items-center justify-content-center" 
+                                         style="width: 150px; height: 150px;">
+                                        <span class="text-accent display-4 fw-bold">{{ team_leader.initials }}</span>
+                                    </div>
+                                {% endif %}
+                                <h3 class="member-name">{{ team_leader.full_name }}</h3>
+                                <p class="member-role fs-6">{{ team_leader.get_role_display }}</p>
+                                <p class="member-reg text-muted">{{ team_leader.registration_number }}</p>
+                                <p class="member-contribution">{{ team_leader.contribution }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            
+            <!-- Grouped by Role -->
+            {% for role, members in members_by_role.items %}
+                <div class="mb-5" data-aos="fade-up">
+                    <h4 class="mb-4 text-accent">
+                        <i class="fas fa-user-tag me-2"></i> {{ role }}
+                    </h4>
+                    <div class="row g-4">
+                        {% for member in members %}
+                            {% if not member.is_leader %}
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="team-card card h-100">
+                                        <div class="card-body text-center">
+                                            {% if member.photo %}
+                                                <img src="{{ member.photo.url }}" alt="{{ member.full_name }}" 
+                                                     class="member-photo">
+                                            {% else %}
+                                                <div class="member-photo d-flex align-items-center justify-content-center bg-accent-light mx-auto">
+                                                    <span class="text-accent fs-3 fw-bold">{{ member.initials }}</span>
+                                                </div>
+                                            {% endif %}
+                                            <h6 class="member-name">{{ member.full_name }}</h6>
+                                            <span class="member-role">{{ member.get_role_display }}</span>
+                                            <p class="member-reg text-muted small">{{ member.registration_number }}</p>
+                                            <p class="member-contribution small">{{ member.contribution|truncatewords:15 }}</p>
+                                            
+                                            <!-- Social Links -->
+                                            <div class="mt-3 d-flex justify-content-center gap-2">
+                                                {% if member.github_url %}
+                                                    <a href="{{ member.github_url }}" target="_blank" rel="noopener" 
+                                                       class="text-muted" title="GitHub">
+                                                        <i class="fab fa-github"></i>
+                                                    </a>
+                                                {% endif %}
+                                                {% if member.linkedin_url %}
+                                                    <a href="{{ member.linkedin_url }}" target="_blank" rel="noopener" 
+                                                       class="text-muted" title="LinkedIn">
+                                                        <i class="fab fa-linkedin"></i>
+                                                    </a>
+                                                {% endif %}
+                                                {% if member.portfolio_url %}
+                                                    <a href="{{ member.portfolio_url }}" target="_blank" rel="noopener" 
+                                                       class="text-muted" title="Portfolio">
+                                                        <i class="fas fa-globe"></i>
+                                                    </a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% empty %}
+                {% if not team_leader %}
+                    <div class="text-center" data-aos="fade-up">
+                        <div class="card p-5">
+                            <i class="fas fa-users fa-4x text-muted mb-4"></i>
+                            <h3>{% trans "Team Members Coming Soon" %}</h3>
+                            <p class="text-muted">{% trans "Our project team will be listed here." %}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

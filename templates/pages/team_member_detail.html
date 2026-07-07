@@ -1,0 +1,70 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ member.full_name }} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<section class="page-header section-padding bg-primary-custom">
+    <div class="container text-center" data-aos="fade-up">
+        <h1 class="section-title">{{ member.full_name }}</h1>
+        <div class="gradient-divider"></div>
+    </div>
+</section>
+
+<section class="section-padding bg-secondary-custom">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6" data-aos="fade-up">
+                <div class="card p-4 text-center">
+                    {% if member.photo %}
+                        <img src="{{ member.photo.url }}" alt="{{ member.full_name }}" class="rounded-circle mb-3" style="width:150px;height:150px;object-fit:cover;">
+                    {% else %}
+                        <div class="bg-accent-light rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width:150px;height:150px;">
+                            <span class="text-accent display-4 fw-bold">{{ member.initials }}</span>
+                        </div>
+                    {% endif %}
+                    
+                    <h3>{{ member.full_name }}</h3>
+                    <span class="badge bg-accent-light text-accent mb-3">{{ member.get_role_display }}</span>
+                    <p class="text-muted"><strong>{% trans "Reg No" %}:</strong> {{ member.registration_number }}</p>
+                    
+                    {% if member.role_description %}
+                        <h5>{% trans "Role Description" %}</h5>
+                        <p class="text-muted">{{ member.role_description }}</p>
+                    {% endif %}
+                    
+                    <h5>{% trans "Contribution" %}</h5>
+                    <p class="text-muted">{{ member.contribution }}</p>
+                    
+                    {% if member.skill_list %}
+                        <h5>{% trans "Skills" %}</h5>
+                        <div>
+                            {% for skill in member.skill_list %}
+                                <span class="badge bg-accent-light text-accent me-1 mb-1">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    
+                    {% if member.bio %}
+                        <h5 class="mt-3">{% trans "Bio" %}</h5>
+                        <p class="text-muted">{{ member.bio }}</p>
+                    {% endif %}
+                    
+                    <div class="mt-3 d-flex justify-content-center gap-3">
+                        {% if member.github_url %}
+                            <a href="{{ member.github_url }}" target="_blank" class="btn btn-outline btn-sm"><i class="fab fa-github me-1"></i> GitHub</a>
+                        {% endif %}
+                        {% if member.linkedin_url %}
+                            <a href="{{ member.linkedin_url }}" target="_blank" class="btn btn-outline btn-sm"><i class="fab fa-linkedin me-1"></i> LinkedIn</a>
+                        {% endif %}
+                        {% if member.email %}
+                            <a href="mailto:{{ member.email }}" class="btn btn-outline btn-sm"><i class="fas fa-envelope me-1"></i> Email</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

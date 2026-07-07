@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Low-Fidelity Prototypes" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <!-- Page Header -->
+    <section class="page-header section-padding bg-primary-custom">
+        <div class="container text-center" data-aos="fade-up">
+            <span class="section-label">{% trans "Prototypes" %}</span>
+            <h1 class="section-title">{% trans "Low-Fidelity Prototypes" %}</h1>
+            <div class="gradient-divider"></div>
+            <p class="section-subtitle">{% trans "Hand-drawn sketches and paper wireframes showing initial design concepts." %}</p>
+        </div>
+    </section>
+    
+    <!-- Prototypes Grid -->
+    <section class="section-padding bg-secondary-custom">
+        <div class="container">
+            <div class="row g-4">
+                {% for prototype in prototypes %}
+                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:100 }}">
+                        <div class="card prototype-card h-100 overflow-hidden">
+                            <div class="position-relative">
+                                <img src="{{ prototype.sketch_image.url }}" 
+                                     alt="{{ prototype.page_name }}" 
+                                     class="w-100" style="height: 300px; object-fit: cover;">
+                                <div class="overlay">
+                                    <a href="{% url 'prototypes:low_fidelity_detail' prototype.pk %}" 
+                                       class="btn btn-primary btn-sm">
+                                        <i class="fas fa-search-plus me-1"></i> {% trans "View Details" %}
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-body p-4">
+                                <span class="badge bg-accent-light text-accent mb-2">{% trans "Low-Fidelity" %}</span>
+                                <h5 class="card-title">{% if LANGUAGE_CODE == 'sw' and prototype.title_sw %}{{ prototype.title_sw }}{% else %}{{ prototype.title }}{% endif %}</h5>
+                                <p class="text-muted small mb-2">
+                                    <i class="fas fa-file me-1"></i> {{ prototype.page_name }}
+                                </p>
+                                <p class="text-muted small">
+                                    {% if LANGUAGE_CODE == 'sw' and prototype.description_sw %}
+                                        {{ prototype.description_sw|truncatewords:15 }}
+                                    {% else %}
+                                        {{ prototype.description|truncatewords:15 }}
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="col-12 text-center" data-aos="fade-up">
+                        <div class="card p-5">
+                            <i class="fas fa-pencil fa-3x text-muted mb-3"></i>
+                            <h5>{% trans "No Low-Fidelity Prototypes Yet" %}</h5>
+                            <p class="text-muted">{% trans "Hand-sketched prototypes will be displayed here once created." %}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

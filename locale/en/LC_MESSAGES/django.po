@@ -1,0 +1,365 @@
+# English translations for HCI Portfolio.
+msgid ""
+msgstr ""
+"Project-Id-Version: HCI Portfolio 1.0\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "About"
+msgstr "About"
+
+msgid "Design"
+msgstr "Design"
+
+msgid "Requirements"
+msgstr "Requirements"
+
+msgid "Research"
+msgstr "Research"
+
+msgid "Low-Fidelity"
+msgstr "Low-Fidelity"
+
+msgid "Medium-Fidelity"
+msgstr "Medium-Fidelity"
+
+msgid "High-Fidelity"
+msgstr "High-Fidelity"
+
+msgid "Evaluation"
+msgstr "Evaluation"
+
+msgid "Poster"
+msgstr "Poster"
+
+msgid "Team"
+msgstr "Team"
+
+msgid "Toggle theme"
+msgstr "Toggle theme"
+
+msgid "Switch theme"
+msgstr "Switch theme"
+
+msgid "Select language"
+msgstr "Select language"
+
+msgid "View Case Study"
+msgstr "View Case Study"
+
+msgid "Meet the Team"
+msgstr "Meet the Team"
+
+msgid "Scroll to explore"
+msgstr "Scroll to explore"
+
+msgid "Introduction"
+msgstr "Introduction"
+
+msgid "About This Project"
+msgstr "About This Project"
+
+msgid "Problem"
+msgstr "Problem"
+
+msgid "Target Users"
+msgstr "Target Users"
+
+msgid "Programme"
+msgstr "Programme"
+
+msgid "Design Process"
+msgstr "Design Process"
+
+msgid "Our Methodology"
+msgstr "Our Methodology"
+
+msgid "Prototypes"
+msgstr "Prototypes"
+
+msgid "Learn More"
+msgstr "Learn More"
+
+msgid "View Full Team"
+msgstr "View Full Team"
+
+msgid "Team members will be added soon."
+msgstr "Team members will be added soon."
+
+msgid "System Overview"
+msgstr "System Overview"
+
+msgid "What is This Project?"
+msgstr "What is This Project?"
+
+msgid "Why This Project Exists"
+msgstr "Why This Project Exists"
+
+msgid "Objectives"
+msgstr "Objectives"
+
+msgid "Project Objectives"
+msgstr "Project Objectives"
+
+msgid "Users"
+msgstr "Users"
+
+msgid "Target User Groups"
+msgstr "Target User Groups"
+
+msgid "System Requirements"
+msgstr "System Requirements"
+
+msgid "Functional"
+msgstr "Functional"
+
+msgid "Functional Requirements"
+msgstr "Functional Requirements"
+
+msgid "Non-Functional"
+msgstr "Non-Functional"
+
+msgid "Non-Functional Requirements"
+msgstr "Non-Functional Requirements"
+
+msgid "Competitor Analysis"
+msgstr "Competitor Analysis"
+
+msgid "Existing Systems"
+msgstr "Existing Systems"
+
+msgid "Strengths"
+msgstr "Strengths"
+
+msgid "Weaknesses"
+msgstr "Weaknesses"
+
+msgid "Visit Website"
+msgstr "Visit Website"
+
+msgid "Problems Discovered"
+msgstr "Problems Discovered"
+
+msgid "Opportunities"
+msgstr "Opportunities"
+
+msgid "Low-Fidelity Prototypes"
+msgstr "Low-Fidelity Prototypes"
+
+msgid "Medium-Fidelity Prototypes"
+msgstr "Medium-Fidelity Prototypes"
+
+msgid "High-Fidelity Prototype"
+msgstr "High-Fidelity Prototype"
+
+msgid "View Details"
+msgstr "View Details"
+
+msgid "Featured"
+msgstr "Featured"
+
+msgid "View Full Screen"
+msgstr "View Full Screen"
+
+msgid "Improvements from Low-Fi"
+msgstr "Improvements from Low-Fi"
+
+msgid "Design Prototypes"
+msgstr "Design Prototypes"
+
+msgid "View Sketches"
+msgstr "View Sketches"
+
+msgid "View Wireframes"
+msgstr "View Wireframes"
+
+msgid "View Final Design"
+msgstr "View Final Design"
+
+msgid "Heuristic Evaluation"
+msgstr "Heuristic Evaluation"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Evaluators"
+msgstr "Evaluators"
+
+msgid "Duration"
+msgstr "Duration"
+
+msgid "Problems Found"
+msgstr "Problems Found"
+
+msgid "Evaluation Findings"
+msgstr "Evaluation Findings"
+
+msgid "Recommendation"
+msgstr "Recommendation"
+
+msgid "Before"
+msgstr "Before"
+
+msgid "After"
+msgstr "After"
+
+msgid "Why This Change?"
+msgstr "Why This Change?"
+
+msgid "Changes Made"
+msgstr "Changes Made"
+
+msgid "Nielsen's 10 Heuristics"
+msgstr "Nielsen's 10 Heuristics"
+
+msgid "Method"
+msgstr "Method"
+
+msgid "Full Report"
+msgstr "Full Report"
+
+msgid "Project Poster"
+msgstr "Project Poster"
+
+msgid "Download Poster"
+msgstr "Download Poster"
+
+msgid "Solution"
+msgstr "Solution"
+
+msgid "Project Team Members"
+msgstr "Project Team Members"
+
+msgid "Team Leader"
+msgstr "Team Leader"
+
+msgid "Contribution"
+msgstr "Contribution"
+
+msgid "Read Bio"
+msgstr "Read Bio"
+
+msgid "Role Description"
+msgstr "Role Description"
+
+msgid "Skills"
+msgstr "Skills"
+
+msgid "Bio"
+msgstr "Bio"
+
+msgid "Reg No"
+msgstr "Reg No"
+
+msgid "Previous"
+msgstr "Previous"
+
+msgid "Next"
+msgstr "Next"
+
+msgid "Completed"
+msgstr "Completed"
+
+msgid "In Progress"
+msgstr "In Progress"
+
+msgid "Pending"
+msgstr "Pending"
+
+msgid "HCI Portfolio"
+msgstr "HCI Portfolio"
+
+msgid "HCI Design Case Study"
+msgstr "HCI Design Case Study"
+
+msgid "Go to homepage"
+msgstr "Go to homepage"
+
+msgid "Toggle navigation"
+msgstr "Toggle navigation"
+
+msgid "Back to top"
+msgstr "Back to top"
+
+msgid "Design Evolution"
+msgstr "Design Evolution"
+
+msgid "Design Iterations"
+msgstr "Design Iterations"
+
+msgid "Evaluation Details"
+msgstr "Evaluation Details"
+
+msgid "Finding"
+msgstr "Finding"
+
+msgid "Evaluation Finding"
+msgstr "Evaluation Finding"
+
+msgid "Design Rationale"
+msgstr "Design Rationale"
+
+msgid "User Interactions"
+msgstr "User Interactions"
+
+msgid "Navigation Flow"
+msgstr "Navigation Flow"
+
+msgid "Connected Screens"
+msgstr "Connected Screens"
+
+msgid "Color Palette"
+msgstr "Color Palette"
+
+msgid "Typography"
+msgstr "Typography"
+
+msgid "Interactions"
+msgstr "Interactions"
+
+msgid "Design System Notes"
+msgstr "Design System Notes"
+
+msgid "Key Features"
+msgstr "Key Features"
+
+msgid "UI/UX Analysis"
+msgstr "UI/UX Analysis"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Summary"
+msgstr "Summary"
+
+msgid "Reason for change"
+msgstr "Reason for change"
+
+msgid "Why These Changes"
+msgstr "Why These Changes"
+
+msgid "Hand-drawn sketches and paper wireframes"
+msgstr "Hand-drawn sketches and paper wireframes"
+
+msgid "Digital wireframes with navigation flows"
+msgstr "Digital wireframes with navigation flows"
+
+msgid "Final polished UI screens"
+msgstr "Final polished UI screens"
+
+msgid "Our design process across three fidelity levels."
+msgstr "Our design process across three fidelity levels."
+
+msgid "Track our design changes and improvements across iterations."
+msgstr "Track our design changes and improvements across iterations."
+
+msgid "No design iterations recorded yet."
+msgstr "No design iterations recorded yet."
+
+msgid "Evolved into Medium-Fidelity"
+msgstr "Evolved into Medium-Fidelity"

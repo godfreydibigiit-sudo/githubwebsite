@@ -1,0 +1,55 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ prototype.page_name }} - {% trans "High-Fidelity" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<section class="page-header section-padding bg-primary-custom">
+    <div class="container text-center" data-aos="fade-up">
+        <span class="section-label">{% trans "High-Fidelity Prototype" %}</span>
+        <h1 class="section-title">{{ prototype.page_name }}</h1>
+        <div class="gradient-divider"></div>
+    </div>
+</section>
+
+<section class="section-padding bg-secondary-custom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto" data-aos="fade-up">
+                <div class="card p-4">
+                    <h3>{{ prototype.title }}</h3>
+                    <span class="badge bg-accent text-white mb-3">{{ prototype.get_screen_type_display }}</span>
+                    <p class="text-muted">{{ prototype.description }}</p>
+                    
+                    {% if prototype.screenshot %}
+                        <div class="prototype-card rounded overflow-hidden shadow-lg mb-4">
+                            <img src="{{ prototype.screenshot.url }}" alt="{{ prototype.page_name }}" class="w-100">
+                        </div>
+                    {% endif %}
+                    
+                    {% if prototype.color_palette %}
+                        <h5>{% trans "Color Palette" %}</h5>
+                        <p class="text-muted"><code>{{ prototype.color_palette }}</code></p>
+                    {% endif %}
+                    
+                    {% if prototype.typography %}
+                        <h5>{% trans "Typography" %}</h5>
+                        <p class="text-muted">{{ prototype.typography }}</p>
+                    {% endif %}
+                    
+                    {% if prototype.interaction_details %}
+                        <h5>{% trans "Interactions" %}</h5>
+                        <p class="text-muted">{{ prototype.interaction_details }}</p>
+                    {% endif %}
+                    
+                    {% if prototype.design_system_notes %}
+                        <h5>{% trans "Design System Notes" %}</h5>
+                        <p class="text-muted">{{ prototype.design_system_notes }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

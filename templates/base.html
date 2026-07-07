@@ -1,0 +1,384 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" data-theme="{{ current_theme|default:'dark' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block meta_description %}HCI Portfolio - Human Computer Interface Design Project{% endblock %}">
+    <meta name="theme-color" content="#0D1117">
+    
+    <title>{% block title %}{% trans "HCI Portfolio" %}{% endblock %}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome 6 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    {% if static_files_exist %}
+        <link href="{% static 'css/base.css' %}" rel="stylesheet">
+        <link href="{% static 'css/components.css' %}" rel="stylesheet">
+        <link href="{% static 'css/animations.css' %}" rel="stylesheet">
+        <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+        {% if current_theme == 'dark' %}
+            <link href="{% static 'css/dark-theme.css' %}" rel="stylesheet" id="theme-style">
+        {% else %}
+            <link href="{% static 'css/light-theme.css' %}" rel="stylesheet" id="theme-style">
+        {% endif %}
+    {% endif %}
+    
+    <!-- Inline CSS (fallback if static files don't load) -->
+    <style>
+        :root {
+            --bg-primary: #0D1117;
+            --bg-secondary: #161B22;
+            --accent-cyan: #00E5FF;
+            --accent-pink: #E91E63;
+            --text-primary: #FFFFFF;
+            --text-secondary: #8892B0;
+            --border-color: #21262D;
+            --gradient-hero: linear-gradient(135deg, #00E5FF 0%, #E91E63 100%);
+            --header-height: 80px;
+        }
+        
+        [data-theme="light"] {
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8F9FA;
+            --accent-cyan: #0097A7;
+            --accent-pink: #C2185B;
+            --text-primary: #212529;
+            --text-secondary: #6C757D;
+            --border-color: #DEE2E6;
+            --gradient-hero: linear-gradient(135deg, #0097A7 0%, #C2185B 100%);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        
+        .text-accent { color: var(--accent-cyan) !important; }
+        .text-pink { color: var(--accent-pink) !important; }
+        .text-muted { color: var(--text-secondary) !important; }
+        .bg-primary-custom { background-color: var(--bg-primary); }
+        .bg-secondary-custom { background-color: var(--bg-secondary); }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            z-index: 1000;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        [data-theme="light"] .navbar {
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        .section-padding { padding: 80px 0; }
+        
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.1);
+        }
+        
+        .btn-primary {
+            background: var(--gradient-hero);
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.3);
+        }
+        
+        .gradient-divider {
+            width: 80px;
+            height: 3px;
+            background: var(--gradient-hero);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+        
+        .section-label {
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .badge-accent {
+            background: rgba(0, 229, 255, 0.1);
+            color: var(--accent-cyan);
+        }
+        
+        .theme-toggle, .language-switcher select {
+            background: transparent;
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 8px 12px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover, .language-switcher select:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+        
+        .language-switcher select {
+            font-size: 14px;
+        }
+        
+        .language-switcher select option {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        
+        @media (max-width: 768px) {
+            .section-title { font-size: 1.8rem; }
+            .section-padding { padding: 50px 0; }
+        }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    
+    <!-- HEADER / NAVIGATION -->
+    <header class="navbar navbar-expand-lg" role="navigation">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center text-decoration-none" href="{% url 'pages:home' %}" style="color: var(--text-primary);">
+                <i class="fas fa-palette me-2" style="color: var(--accent-cyan); font-size: 1.5rem;"></i>
+                <span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.5rem;">
+                    HCI<span style="color: var(--accent-cyan);">Portfolio</span>
+                </span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" 
+                    style="border: none; color: var(--text-primary);">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <nav class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="{% url 'pages:home' %}" style="color: var(--text-secondary);">{% trans "Home" %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="{% url 'pages:about' %}" style="color: var(--text-secondary);">{% trans "About" %}</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle px-3" href="#" role="button" data-bs-toggle="dropdown" style="color: var(--text-secondary);">
+                            {% trans "Design" %}
+                        </a>
+                        <ul class="dropdown-menu" style="background: var(--bg-secondary); border-color: var(--border-color);">
+                            <li><a class="dropdown-item" href="{% url 'requirements:list' %}" style="color: var(--text-primary);">{% trans "Requirements" %}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'research:list' %}" style="color: var(--text-primary);">{% trans "Research" %}</a></li>
+                            <li><hr class="dropdown-divider" style="border-color: var(--border-color);"></li>
+                            <li><a class="dropdown-item" href="{% url 'prototypes:low_fidelity_list' %}" style="color: var(--text-primary);">{% trans "Low-Fidelity" %}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'prototypes:medium_fidelity_list' %}" style="color: var(--text-primary);">{% trans "Medium-Fidelity" %}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'prototypes:high_fidelity_list' %}" style="color: var(--text-primary);">{% trans "High-Fidelity" %}</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="{% url 'evaluations:list' %}" style="color: var(--text-secondary);">{% trans "Evaluation" %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="{% url 'evaluations:poster' %}" style="color: var(--text-secondary);">{% trans "Poster" %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="{% url 'team:list' %}" style="color: var(--text-secondary);">{% trans "Team" %}</a>
+                    </li>
+                    
+                    <!-- Theme Toggle -->
+                    <li class="nav-item ms-lg-3">
+                        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" 
+                                aria-label="{% trans 'Toggle theme' %}" title="{% trans 'Switch theme' %}">
+                            <i class="fas fa-sun" id="themeIcon"></i>
+                        </button>
+                    </li>
+                    
+                    <!-- Language Switcher -->
+                    <li class="nav-item ms-lg-2">
+                        <form action="{% url 'set_language' %}" method="post" class="language-switcher" id="languageForm">
+                            {% csrf_token %}
+                            <input name="next" type="hidden" value="{{ request.path }}">
+                            <select name="language" onchange="this.form.submit()" aria-label="{% trans 'Select language' %}">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% get_available_languages as LANGUAGES %}
+                                {% get_language_info_list for LANGUAGES as languages %}
+                                {% for language in languages %}
+                                    <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
+                                        {% if language.code == 'en' %}🇬🇧{% else %}🇹🇿{% endif %}
+                                        {{ language.name_local }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Spacer for fixed header -->
+    <div style="height: var(--header-height);"></div>
+    
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    <footer style="background: var(--bg-secondary); border-top: 1px solid var(--border-color); padding: 24px 0; text-align: center;">
+        <div class="container">
+            <p style="color: var(--text-secondary); margin: 0; font-size: 14px;">
+                &copy; {% now "Y" %} HCI Portfolio — Institute of Finance Management
+            </p>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    
+    <!-- THEME SWITCHING SCRIPT -->
+    <script>
+        // ============ THEME MANAGER ============
+        function getTheme() {
+            const saved = localStorage.getItem('hci-theme');
+            if (saved) return saved;
+            return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+        
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('hci-theme', theme);
+            updateThemeIcon(theme);
+            
+            // Update theme-style link if it exists
+            const themeStyle = document.getElementById('theme-style');
+            if (themeStyle) {
+                themeStyle.href = '/static/css/' + theme + '-theme.css';
+            }
+        }
+        
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme') || 'dark';
+            const newTheme = current === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        }
+        
+        function updateThemeIcon(theme) {
+            const icon = document.getElementById('themeIcon');
+            if (icon) {
+                icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            }
+        }
+        
+        // Initialize theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const theme = getTheme();
+            setTheme(theme);
+        });
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            if (!localStorage.getItem('hci-theme')) {
+                setTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+    </script>
+    
+    <!-- INITIALIZE AOS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    easing: 'ease-in-out',
+                    once: true,
+                    offset: 100,
+                    disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                });
+            }
+        });
+    </script>
+    
+    <!-- PARTICLES INITIALIZATION -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const particlesContainer = document.getElementById('particles-js');
+            if (particlesContainer && typeof particlesJS !== 'undefined') {
+                particlesJS('particles-js', {
+                    particles: {
+                        number: { value: 80, density: { enable: true, value_area: 800 } },
+                        color: { value: '#00E5FF' },
+                        shape: { type: 'circle' },
+                        opacity: { value: 0.5, random: true },
+                        size: { value: 3, random: true },
+                        line_linked: { enable: true, distance: 150, color: '#00E5FF', opacity: 0.2, width: 1 },
+                        move: { enable: true, speed: 1, random: true }
+                    },
+                    interactivity: {
+                        detect_on: 'canvas',
+                        events: {
+                            onhover: { enable: true, mode: 'grab' },
+                            onclick: { enable: true, mode: 'push' }
+                        }
+                    },
+                    retina_detect: true
+                });
+            }
+        });
+    </script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

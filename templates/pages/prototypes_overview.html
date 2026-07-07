@@ -1,0 +1,53 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Prototypes Overview" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<section class="page-header section-padding bg-primary-custom">
+    <div class="container text-center" data-aos="fade-up">
+        <span class="section-label">{% trans "Prototypes" %}</span>
+        <h1 class="section-title">{% trans "Design Prototypes" %}</h1>
+        <div class="gradient-divider"></div>
+        <p class="section-subtitle">{% trans "Our design process across three fidelity levels." %}</p>
+    </div>
+</section>
+
+<section class="section-padding bg-secondary-custom">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <a href="{% url 'prototypes:low_fidelity_list' %}" class="text-decoration-none">
+                    <div class="card h-100 text-center p-4">
+                        <div class="card-icon mx-auto"><i class="fas fa-pencil"></i></div>
+                        <h4>{% trans "Low-Fidelity" %}</h4>
+                        <p class="text-muted">{% trans "Hand-drawn sketches and paper wireframes" %}</p>
+                        <span class="btn btn-sm btn-outline mt-3">{% trans "View Sketches" %}</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <a href="{% url 'prototypes:medium_fidelity_list' %}" class="text-decoration-none">
+                    <div class="card h-100 text-center p-4">
+                        <div class="card-icon mx-auto"><i class="fas fa-wireframe"></i></div>
+                        <h4>{% trans "Medium-Fidelity" %}</h4>
+                        <p class="text-muted">{% trans "Digital wireframes with navigation flows" %}</p>
+                        <span class="btn btn-sm btn-outline mt-3">{% trans "View Wireframes" %}</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <a href="{% url 'prototypes:high_fidelity_list' %}" class="text-decoration-none">
+                    <div class="card h-100 text-center p-4">
+                        <div class="card-icon mx-auto"><i class="fas fa-desktop"></i></div>
+                        <h4>{% trans "High-Fidelity" %}</h4>
+                        <p class="text-muted">{% trans "Final polished UI screens" %}</p>
+                        <span class="btn btn-sm btn-outline mt-3">{% trans "View Final Design" %}</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

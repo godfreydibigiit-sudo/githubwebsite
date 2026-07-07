@@ -1,0 +1,209 @@
+/* ============================================
+   RESPONSIVE.CSS - Fully Responsive Design
+   ============================================ */
+
+/* Extra Large Devices (1200px and up) */
+@media (min-width: 1200px) {
+    .container-custom {
+        max-width: 1140px;
+    }
+}
+
+/* Large Devices (992px to 1199px) */
+@media (max-width: 1199.98px) {
+    :root {
+        --font-size-6xl: 3rem;
+        --font-size-5xl: 2.5rem;
+        --font-size-4xl: 2rem;
+    }
+    
+    .container-custom {
+        max-width: 960px;
+    }
+    
+    .before-after-card {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Medium Devices (768px to 991px) */
+@media (max-width: 991.98px) {
+    :root {
+        --font-size-6xl: 2.5rem;
+        --font-size-4xl: 1.75rem;
+        --section-padding: 80px 0;
+    }
+    
+    .container-custom {
+        max-width: 720px;
+    }
+    
+    .navbar-nav {
+        padding: var(--space-lg) 0;
+        background: var(--navbar-bg);
+        backdrop-filter: blur(10px);
+    }
+    
+    .nav-link {
+        text-align: center;
+    }
+    
+    .hero-title {
+        font-size: var(--font-size-5xl);
+    }
+    
+    .hero-subtitle {
+        font-size: var(--font-size-lg);
+    }
+    
+    .hero-cta {
+        justify-content: center;
+    }
+    
+    .timeline::before {
+        left: 20px;
+    }
+    
+    .timeline-item,
+    .timeline-item:nth-child(even) {
+        justify-content: flex-start;
+        padding-left: 50px;
+    }
+    
+    .timeline-item .timeline-content {
+        width: 100%;
+    }
+    
+    .timeline-item .timeline-dot {
+        left: 20px;
+    }
+}
+
+/* Small Devices (576px to 767px) */
+@media (max-width: 767.98px) {
+    :root {
+        --font-size-6xl: 2rem;
+        --font-size-4xl: 1.5rem;
+        --section-padding: 60px 0;
+    }
+    
+    .container-custom {
+        max-width: 540px;
+    }
+    
+    .hero-title {
+        font-size: var(--font-size-4xl);
+    }
+    
+    .hero-subtitle {
+        font-size: var(--font-size-base);
+    }
+    
+    .section-title {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .card {
+        padding: var(--space-lg);
+    }
+    
+    .team-card .member-photo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .requirement-item {
+        flex-direction: column;
+    }
+}
+
+/* Extra Small Devices (575px and below) */
+@media (max-width: 575.98px) {
+    :root {
+        --font-size-6xl: 1.75rem;
+        --font-size-4xl: 1.25rem;
+        --section-padding: 40px 0;
+        --header-height: 70px;
+    }
+    
+    .hero-title {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .btn {
+        padding: 10px 24px;
+        font-size: var(--font-size-xs);
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+    }
+    
+    .hero-cta .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .card-icon {
+        width: 50px;
+        height: 50px;
+        font-size: var(--font-size-xl);
+    }
+    
+    .back-to-top {
+        bottom: var(--space-md);
+        right: var(--space-md);
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Landscape Mode */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero-section {
+        min-height: auto;
+        padding: 100px 0 60px;
+    }
+}
+
+/* High DPI Screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    body {
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    .hero-section,
+    .back-to-top,
+    .theme-toggle,
+    .language-switcher,
+    #particles-js {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}

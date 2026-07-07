@@ -1,0 +1,244 @@
+{% load i18n %}
+{% comment %}
+Team Member Card Component
+Usage: {% include 'partials/_team-member.html' with member=team_member %}
+{% endcomment %}
+
+<div class="team-member-card {% if featured %}team-member-featured{% endif %}" 
+     data-aos="fade-up" data-aos-delay="{{ animation_delay|default:100 }}">
+    
+    <div class="card h-100 {% if featured %}border-accent{% endif %}">
+        <div class="card-body text-center p-4">
+            
+            <!-- Member Photo -->
+            <div class="member-photo-wrapper mb-4">
+                {% if member.photo %}
+                    <img src="{{ member.photo.url }}" 
+                         alt="{{ member.full_name }}" 
+                         class="member-photo {% if featured %}member-photo-large{% endif %}"
+                         loading="lazy">
+                {% else %}
+                    <div class="member-photo member-photo-placeholder {% if featured %}member-photo-large{% endif %} 
+                         d-flex align-items-center justify-content-center mx-auto">
+                        <span class="member-initials">{{ member.initials }}</span>
+                    </div>
+                {% endif %}
+                
+                {% if member.is_leader or featured %}
+                    <span class="member-crown">
+                        <i class="fas fa-crown"></i>
+                    </span>
+                {% endif %}
+            </div>
+            
+            <!-- Member Info -->
+            <h5 class="member-name mb-1">{{ member.full_name }}</h5>
+            
+            {% if member.registration_number %}
+                <p class="member-registration text-muted small mb-2">
+                    <i class="fas fa-id-card me-1"></i> {{ member.registration_number }}
+                </p>
+            {% endif %}
+            
+            <!-- Role Badge -->
+            <span class="member-role-badge mb-3">
+                {{ member.get_role_display }}
+            </span>
+            
+            <!-- Role Description -->
+            {% if member.role_description %}
+                <p class="member-role-desc text-muted small mb-3">
+                    {{ member.role_description|truncatewords:15 }}
+                </p>
+            {% endif %}
+            
+            <!-- Contribution -->
+            {% if member.contribution %}
+                <div class="member-contribution bg-accent-light rounded p-3 mb-3">
+                    <h6 class="text-accent small mb-2">
+                        <i class="fas fa-star me-1"></i> {% trans "Contribution" %}
+                    </h6>
+                    <p class="text-muted small mb-0">{{ member.contribution|truncatewords:20 }}</p>
+                </div>
+            {% endif %}
+            
+            <!-- Skills -->
+            {% if member.skill_list %}
+                <div class="member-skills mb-3">
+                    {% for skill in member.skill_list %}
+                        <span class="badge bg-accent-light text-accent me-1 mb-1">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            
+            <!-- Bio -->
+            {% if member.bio %}
+                <button class="btn btn-sm btn-link text-accent" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#bio-{{ member.registration_number }}"
+                        aria-expanded="false">
+                    <i class="fas fa-chevron-down me-1"></i> {% trans "Read Bio" %}
+                </button>
+                <div class="collapse mt-2" id="bio-{{ member.registration_number }}">
+                    <p class="text-muted small">{{ member.bio }}</p>
+                </div>
+            {% endif %}
+            
+            <!-- Social Links -->
+            {% if member.github_url or member.linkedin_url or member.portfolio_url or member.email %}
+                <div class="member-social mt-3 pt-3 border-top">
+                    <div class="d-flex justify-content-center gap-3">
+                        {% if member.email %}
+                            <a href="mailto:{{ member.email }}" class="social-link" title="Email" 
+                               data-bs-toggle="tooltip">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        {% endif %}
+                        {% if member.github_url %}
+                            <a href="{{ member.github_url }}" target="_blank" rel="noopener" 
+                               class="social-link" title="GitHub" data-bs-toggle="tooltip">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        {% endif %}
+                        {% if member.linkedin_url %}
+                            <a href="{{ member.linkedin_url }}" target="_blank" rel="noopener" 
+                               class="social-link" title="LinkedIn" data-bs-toggle="tooltip">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        {% endif %}
+                        {% if member.portfolio_url %}
+                            <a href="{{ member.portfolio_url }}" target="_blank" rel="noopener" 
+                               class="social-link" title="Portfolio" data-bs-toggle="tooltip">
+                                <i class="fas fa-globe"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Team Member CSS -->
+<style>
+    .team-member-card {
+        transition: all var(--transition-base);
+    }
+    
+    .team-member-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .team-member-card.team-member-featured .card {
+        border-color: var(--accent-cyan);
+        box-shadow: 0 10px 40px rgba(0, 229, 255, 0.15);
+    }
+    
+    .member-photo-wrapper {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .member-photo {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--accent-cyan);
+        padding: 3px;
+        transition: all var(--transition-base);
+    }
+    
+    .member-photo-large {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .member-photo-placeholder {
+        background: var(--accent-cyan-light);
+        border-style: dashed;
+    }
+    
+    .member-initials {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--accent-cyan);
+    }
+    
+    .team-member-card:hover .member-photo {
+        border-color: transparent;
+        background: var(--gradient-hero);
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(0, 229, 255, 0.3);
+    }
+    
+    .member-crown {
+        position: absolute;
+        top: -10px;
+        right: -5px;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background: var(--gradient-hero);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 14px;
+        box-shadow: var(--shadow-md);
+    }
+    
+    .member-name {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    
+    .member-role-badge {
+        display: inline-block;
+        padding: 4px 16px;
+        border-radius: var(--radius-full);
+        background: var(--accent-cyan-light);
+        color: var(--accent-cyan);
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .social-link {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        border: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-secondary);
+        transition: all var(--transition-fast);
+        text-decoration: none;
+    }
+    
+    .social-link:hover {
+        border-color: var(--accent-cyan);
+        color: var(--accent-cyan);
+        background: var(--accent-cyan-light);
+        transform: translateY(-2px);
+    }
+    
+    @media (max-width: 767.98px) {
+        .member-photo {
+            width: 100px;
+            height: 100px;
+        }
+        
+        .member-photo-large {
+            width: 120px;
+            height: 120px;
+        }
+        
+        .member-initials {
+            font-size: 2rem;
+        }
+    }
+</style>

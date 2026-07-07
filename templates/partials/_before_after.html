@@ -1,0 +1,199 @@
+{% load i18n %}
+{% comment %}
+Before/After Comparison Component
+Usage: {% include 'partials/_before-after.html' with before_image=url after_image=url title="Change Title" %}
+{% endcomment %}
+
+<div class="before-after-comparison {% if compact %}before-after-compact{% endif %}">
+    
+    <!-- Header -->
+    {% if title %}
+        <div class="comparison-header mb-4">
+            {% if finding_number %}
+                <span class="badge bg-accent text-white me-2">#{{ finding_number }}</span>
+            {% endif %}
+            <h5 class="d-inline">{{ title }}</h5>
+        </div>
+    {% endif %}
+    
+    <!-- Images Row -->
+    <div class="row g-4">
+        <!-- Before -->
+        <div class="{% if compact %}col-md-6{% else %}col-md-6{% endif %}">
+            <div class="comparison-card before-card">
+                <div class="comparison-image-wrapper">
+                    <span class="comparison-label before-label">
+                        <i class="fas fa-times-circle me-1"></i> {% trans "Before" %}
+                    </span>
+                    {% if before_image %}
+                        <img src="{{ before_image }}" alt="{% trans 'Before improvement' %}" 
+                             class="comparison-image rounded">
+                    {% else %}
+                        <div class="comparison-placeholder bg-accent-light rounded d-flex align-items-center justify-content-center" 
+                             style="min-height: 200px;">
+                            <i class="fas fa-image fa-3x text-muted"></i>
+                        </div>
+                    {% endif %}
+                </div>
+                
+                {% if before_description %}
+                    <div class="comparison-caption mt-2">
+                        <p class="text-muted small mb-0">
+                            <i class="fas fa-exclamation-triangle text-warning me-1"></i>
+                            {{ before_description }}
+                        </p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- After -->
+        <div class="{% if compact %}col-md-6{% else %}col-md-6{% endif %}">
+            <div class="comparison-card after-card">
+                <div class="comparison-image-wrapper">
+                    <span class="comparison-label after-label">
+                        <i class="fas fa-check-circle me-1"></i> {% trans "After" %}
+                    </span>
+                    {% if after_image %}
+                        <img src="{{ after_image }}" alt="{% trans 'After improvement' %}" 
+                             class="comparison-image rounded">
+                    {% else %}
+                        <div class="comparison-placeholder bg-accent-light rounded d-flex align-items-center justify-content-center" 
+                             style="min-height: 200px;">
+                            <i class="fas fa-image fa-3x text-muted"></i>
+                        </div>
+                    {% endif %}
+                </div>
+                
+                {% if after_description %}
+                    <div class="comparison-caption mt-2">
+                        <p class="text-muted small mb-0">
+                            <i class="fas fa-check-circle text-success me-1"></i>
+                            {{ after_description }}
+                        </p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Change Details -->
+    {% if changes_made or why_changed %}
+        <div class="comparison-details mt-4">
+            <div class="card bg-accent-light border-0">
+                <div class="card-body">
+                    {% if changes_made %}
+                        <h6 class="text-accent mb-2">
+                            <i class="fas fa-wrench me-2"></i> {% trans "Changes Made" %}
+                        </h6>
+                        <p class="text-muted small mb-3">{{ changes_made }}</p>
+                    {% endif %}
+                    
+                    {% if why_changed %}
+                        <h6 class="text-accent mb-2">
+                            <i class="fas fa-question-circle me-2"></i> {% trans "Why This Change?" %}
+                        </h6>
+                        <p class="text-muted small mb-0">{{ why_changed }}</p>
+                    {% endif %}
+                    
+                    {% if severity %}
+                        <div class="mt-3">
+                            <span class="badge severity-badge-{{ severity }}">
+                                {{ severity_label|default:_('Severity') }}: {{ severity }}
+                            </span>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    
+    <!-- Navigation Arrows (for galleries) -->
+    {% if show_navigation %}
+        <div class="comparison-navigation d-flex justify-content-between mt-3">
+            {% if prev_url %}
+                <a href="{{ prev_url }}" class="btn btn-sm btn-outline">
+                    <i class="fas fa-arrow-left me-1"></i> {% trans "Previous" %}
+                </a>
+            {% else %}
+                <span></span>
+            {% endif %}
+            
+            {% if next_url %}
+                <a href="{{ next_url }}" class="btn btn-sm btn-outline">
+                    {% trans "Next" %} <i class="fas fa-arrow-right ms-1"></i>
+                </a>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+
+<!-- Before/After CSS -->
+<style>
+    .comparison-card {
+        position: relative;
+        transition: all var(--transition-base);
+    }
+    
+    .comparison-image-wrapper {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-sm);
+    }
+    
+    .comparison-image {
+        width: 100%;
+        transition: transform var(--transition-slow);
+        cursor: pointer;
+    }
+    
+    .comparison-image-wrapper:hover .comparison-image {
+        transform: scale(1.05);
+    }
+    
+    .comparison-label {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        padding: 6px 16px;
+        border-radius: var(--radius-full);
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        z-index: 1;
+    }
+    
+    .before-label {
+        background: #FF1744;
+        color: white;
+    }
+    
+    .after-label {
+        background: #00E676;
+        color: #0D1117;
+    }
+    
+    .before-card .comparison-image-wrapper {
+        border: 2px solid rgba(255, 23, 68, 0.3);
+    }
+    
+    .after-card .comparison-image-wrapper {
+        border: 2px solid rgba(0, 230, 118, 0.3);
+    }
+    
+    .severity-badge-cosmetic { background: var(--info); color: white; padding: 4px 12px; border-radius: var(--radius-full); font-size: 12px; }
+    .severity-badge-minor { background: var(--warning); color: #0D1117; padding: 4px 12px; border-radius: var(--radius-full); font-size: 12px; }
+    .severity-badge-major { background: var(--error); color: white; padding: 4px 12px; border-radius: var(--radius-full); font-size: 12px; }
+    .severity-badge-catastrophic { background: #0D1117; color: white; padding: 4px 12px; border-radius: var(--radius-full); font-size: 12px; border: 1px solid var(--error); }
+    
+    @media (max-width: 767.98px) {
+        .comparison-label {
+            top: 10px;
+            left: 10px;
+            padding: 4px 12px;
+            font-size: 10px;
+        }
+    }
+</style>

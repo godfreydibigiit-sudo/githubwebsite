@@ -1,0 +1,50 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ prototype.page_name }} - {% trans "Medium-Fidelity" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<section class="page-header section-padding bg-primary-custom">
+    <div class="container text-center" data-aos="fade-up">
+        <span class="section-label">{% trans "Medium-Fidelity Prototype" %}</span>
+        <h1 class="section-title">{{ prototype.page_name }}</h1>
+        <div class="gradient-divider"></div>
+    </div>
+</section>
+
+<section class="section-padding bg-secondary-custom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto" data-aos="fade-up">
+                <div class="card p-4">
+                    <h3>{{ prototype.title }}</h3>
+                    <p class="text-muted">{{ prototype.description }}</p>
+                    {% if prototype.wireframe_image %}
+                        <img src="{{ prototype.wireframe_image.url }}" alt="{{ prototype.page_name }}" class="w-100 rounded mb-3">
+                    {% endif %}
+                    
+                    {% if prototype.navigation_flow %}
+                        <h5 class="mt-3">{% trans "Navigation Flow" %}</h5>
+                        <p class="text-muted">{{ prototype.navigation_flow }}</p>
+                    {% endif %}
+                    
+                    {% if prototype.improvements_from_lowfi %}
+                        <div class="bg-accent-light rounded p-3 mt-3">
+                            <h5 class="text-accent">{% trans "Improvements from Low-Fidelity" %}</h5>
+                            <p class="text-muted mb-0">{{ prototype.improvements_from_lowfi }}</p>
+                        </div>
+                    {% endif %}
+                    
+                    {% if connected_screens %}
+                        <h5 class="mt-4">{% trans "Connected Screens" %}</h5>
+                        {% for screen in connected_screens %}
+                            <span class="badge bg-accent-light text-accent me-2">{{ screen.page_name }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

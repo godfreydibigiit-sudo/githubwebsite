@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Project Poster" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <!-- Page Header -->
+    <section class="page-header section-padding bg-primary-custom">
+        <div class="container text-center" data-aos="fade-up">
+            <span class="section-label">{% trans "Poster" %}</span>
+            <h1 class="section-title">{% trans "Project Poster" %}</h1>
+            <div class="gradient-divider"></div>
+        </div>
+    </section>
+    
+    <!-- Poster Display -->
+    <section class="section-padding bg-secondary-custom">
+        <div class="container">
+            {% if poster %}
+                <div class="row justify-content-center">
+                    <div class="col-lg-8" data-aos="fade-up">
+                        <div class="poster-wrapper">
+                            <img src="{{ poster.poster_image.url }}" 
+                                 alt="{{ poster.title }}" 
+                                 class="w-100">
+                            <div class="poster-download">
+                                <a href="{{ poster.poster_image.url }}" 
+                                   download 
+                                   class="btn btn-primary">
+                                    <i class="fas fa-download me-2"></i> {% trans "Download Poster" %}
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Poster Details -->
+                        <div class="card mt-4 p-4">
+                            <h4>{{ poster.title }}</h4>
+                            <p class="text-muted">{{ poster.description }}</p>
+                            
+                            <div class="row g-3 mt-3">
+                                <div class="col-md-6">
+                                    <div class="bg-accent-light rounded p-3 h-100">
+                                        <h6 class="text-accent"><i class="fas fa-exclamation-circle me-2"></i> {% trans "Problem" %}</h6>
+                                        <p class="text-muted small mb-0">{{ poster.problem_summary }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="bg-accent-light rounded p-3 h-100">
+                                        <h6 class="text-accent"><i class="fas fa-check-circle me-2"></i> {% trans "Solution" %}</h6>
+                                        <p class="text-muted small mb-0">{{ poster.solution_summary }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="text-center" data-aos="fade-up">
+                    <div class="card p-5">
+                        <i class="fas fa-image fa-4x text-muted mb-4"></i>
+                        <h3>{% trans "Poster Coming Soon" %}</h3>
+                        <p class="text-muted">{% trans "Our project poster will be displayed here once finalized." %}</p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,113 @@
+/* ============================================
+   LIGHT-THEME.CSS - Clean Light Mode
+   ============================================ */
+
+[data-theme="light"],
+body.light-theme {
+    /* Background Colors */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F8F9FA;
+    --bg-tertiary: #E9ECEF;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #F8F9FA;
+    --bg-input: #FFFFFF;
+    
+    /* Accent Colors */
+    --accent-cyan: #0097A7;
+    --accent-cyan-hover: #00838F;
+    --accent-cyan-light: rgba(0, 151, 167, 0.1);
+    --accent-cyan-medium: rgba(0, 151, 167, 0.2);
+    
+    --accent-pink: #C2185B;
+    --accent-pink-hover: #AD1457;
+    --accent-pink-light: rgba(194, 24, 91, 0.1);
+    
+    /* Text Colors */
+    --text-primary: #212529;
+    --text-secondary: #6C757D;
+    --text-tertiary: #ADB5BD;
+    --text-inverse: #FFFFFF;
+    
+    /* Border Colors */
+    --border-color: #DEE2E6;
+    --border-color-light: #E9ECEF;
+    
+    /* Shadows */
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.12);
+    
+    --card-hover-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --card-hover-border: rgba(0, 151, 167, 0.3);
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, #0097A7 0%, #C2185B 100%);
+    --gradient-dark: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%);
+    --gradient-card: linear-gradient(135deg, rgba(0, 151, 167, 0.05) 0%, rgba(194, 24, 91, 0.05) 100%);
+    
+    /* Overlay */
+    --overlay-dark: rgba(255, 255, 255, 0.8);
+    --overlay-gradient: linear-gradient(135deg, rgba(0, 151, 167, 0.05) 0%, rgba(194, 24, 91, 0.05) 100%);
+    
+    /* Navbar */
+    --navbar-bg: rgba(255, 255, 255, 0.95);
+    --navbar-border: rgba(222, 226, 230, 0.8);
+    
+    /* Code */
+    --code-bg: #F8F9FA;
+    --code-text: #0097A7;
+    
+    /* Status Colors */
+    --success: #28A745;
+    --warning: #FFC107;
+    --error: #DC3545;
+    --info: #0097A7;
+}
+
+/* Light Mode Specific Styles */
+[data-theme="light"] .navbar {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .card:hover {
+    box-shadow: var(--card-hover-shadow);
+    border-color: var(--card-hover-border);
+}
+
+[data-theme="light"] .hero-section {
+    background: linear-gradient(135deg, rgba(0, 151, 167, 0.03) 0%, rgba(194, 24, 91, 0.03) 100%),
+                var(--bg-primary);
+}
+
+[data-theme="light"] .glass-effect {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .section-label {
+    font-weight: var(--font-bold);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-cyan);
+}

@@ -1,0 +1,65 @@
+{% load i18n %}
+{% comment %}
+Reusable Card Component
+Usage: {% include 'partials/_card.html' with title="Card Title" icon="fas fa-star" content="Description" link_url="#" link_text="Learn More" %}
+{% endcomment %}
+
+<div class="card h-100 p-4 {% if featured %}card-featured{% endif %} {% if card_class %}{{ card_class }}{% endif %}"
+     {% if animation_delay %}data-aos="fade-up" data-aos-delay="{{ animation_delay }}"{% endif %}>
+    
+    {% if icon %}
+        <div class="card-icon {% if icon_class %}{{ icon_class }}{% endif %}">
+            <i class="{{ icon }}"></i>
+        </div>
+    {% endif %}
+    
+    {% if badge_text %}
+        <span class="badge bg-accent-light text-accent mb-3">{{ badge_text }}</span>
+    {% endif %}
+    
+    {% if title %}
+        <h5 class="card-title mb-3">{{ title }}</h5>
+    {% endif %}
+    
+    {% if subtitle %}
+        <h6 class="card-subtitle text-muted mb-3">{{ subtitle }}</h6>
+    {% endif %}
+    
+    {% if content %}
+        <p class="card-text text-muted">{{ content }}</p>
+    {% endif %}
+    
+    {% if image_url %}
+        <img src="{{ image_url }}" alt="{{ title }}" class="card-img-top rounded mb-3" 
+             {% if image_height %}style="height: {{ image_height }}; object-fit: cover;"{% endif %}>
+    {% endif %}
+    
+    {% if list_items %}
+        <ul class="list-unstyled mb-3">
+            {% for item in list_items %}
+                <li class="text-muted small mb-2">
+                    <i class="fas fa-check-circle text-accent me-2"></i> {{ item }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+    {% if footer_text %}
+        <div class="card-footer bg-transparent border-0 pt-3 mt-auto">
+            <p class="text-muted small mb-0">{{ footer_text }}</p>
+        </div>
+    {% endif %}
+    
+    {% if link_url %}
+        <a href="{{ link_url }}" class="btn btn-sm btn-outline mt-3 {% if link_class %}{{ link_class }}{% endif %}">
+            {% if link_icon %}
+                <i class="{{ link_icon }} me-1"></i>
+            {% endif %}
+            {{ link_text|default:_('Learn More') }}
+        </a>
+    {% endif %}
+    
+    {% if custom_html %}
+        {{ custom_html|safe }}
+    {% endif %}
+</div>

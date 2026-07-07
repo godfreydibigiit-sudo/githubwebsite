@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load hci_tags %}
+
+{% block title %}{% trans "Requirements" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <!-- Page Header -->
+    <section class="page-header section-padding bg-primary-custom">
+        <div class="container text-center" data-aos="fade-up">
+            <span class="section-label">{% trans "Requirements" %}</span>
+            <h1 class="section-title">{% trans "System Requirements" %}</h1>
+            <div class="gradient-divider"></div>
+            <p class="section-subtitle">{% trans "Functional and non-functional requirements identified through user research and analysis." %}</p>
+        </div>
+    </section>
+    
+    <!-- Functional Requirements -->
+    <section class="section-padding bg-secondary-custom">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">{% trans "Functional" %}</span>
+                <h2 class="section-title">{% trans "Functional Requirements" %}</h2>
+                <div class="gradient-divider"></div>
+            </div>
+            
+            <div class="row">
+                {% for req in functional_requirements %}
+                    <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:50 }}">
+                        <div class="requirement-item">
+                            <div class="req-icon">
+                                <i class="{{ req.icon }}"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h5 class="mb-0">{% if LANGUAGE_CODE == 'sw' and req.title_sw %}{{ req.title_sw }}{% else %}{{ req.title }}{% endif %}</h5>
+                                    <span class="req-priority priority-{{ req.priority }}">{{ req.get_priority_display }}</span>
+                                </div>
+                                <p class="text-muted mb-2">{% if LANGUAGE_CODE == 'sw' and req.description_sw %}{{ req.description_sw }}{% else %}{{ req.description }}{% endif %}</p>
+                                <div class="d-flex gap-3">
+                                    <small class="text-accent"><i class="fas fa-tag me-1"></i> {{ req.code }}</small>
+                                    <small class="text-muted"><i class="fas fa-folder me-1"></i> {{ req.category }}</small>
+                                    <small class="text-muted"><i class="fas fa-check-circle me-1"></i> {{ req.get_status_display }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="col-12 text-center" data-aos="fade-up">
+                        <div class="card p-5">
+                            <i class="fas fa-clipboard-list fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">{% trans "Functional requirements will be listed here once added." %}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    
+    <!-- Non-Functional Requirements -->
+    <section class="section-padding bg-primary-custom">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">{% trans "Non-Functional" %}</span>
+                <h2 class="section-title">{% trans "Non-Functional Requirements" %}</h2>
+                <div class="gradient-divider"></div>
+            </div>
+            
+            {% for category, reqs in nfr_grouped.items %}
+                <div class="mb-5" data-aos="fade-up">
+                    <h4 class="mb-4 text-accent">
+                        <i class="fas fa-check-circle me-2"></i>
+                        {{ category|title }}
+                    </h4>
+                    <div class="row g-4">
+                        {% for req in reqs %}
+                            <div class="col-md-6">
+                                <div class="card h-100 p-4">
+                                    <div class="d-flex align-items-start">
+                                        <div class="card-icon me-3 flex-shrink-0">
+                                            <i class="{{ req.icon }}"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-2">{% if LANGUAGE_CODE == 'sw' and req.title_sw %}{{ req.title_sw }}{% else %}{{ req.title }}{% endif %}</h6>
+                                            <p class="text-muted small mb-2">{% if LANGUAGE_CODE == 'sw' and req.description_sw %}{{ req.description_sw }}{% else %}{{ req.description }}{% endif %}</p>
+                                            <span class="badge priority-{{ req.priority }}">{{ req.get_priority_display }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% empty %}
+                <div class="text-center" data-aos="fade-up">
+                    <div class="card p-5">
+                        <i class="fas fa-shield-alt fa-3x text-muted mb-3"></i>
+                        <p class="text-muted">{% trans "Non-functional requirements will be listed here once added." %}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

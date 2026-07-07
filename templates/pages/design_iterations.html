@@ -1,0 +1,49 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Design Iterations" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<section class="page-header section-padding bg-primary-custom">
+    <div class="container text-center" data-aos="fade-up">
+        <span class="section-label">{% trans "Design Evolution" %}</span>
+        <h1 class="section-title">{% trans "Design Iterations" %}</h1>
+        <div class="gradient-divider"></div>
+        <p class="section-subtitle">{% trans "Track our design changes and improvements across iterations." %}</p>
+    </div>
+</section>
+
+<section class="section-padding bg-secondary-custom">
+    <div class="container">
+        {% for iteration in iterations %}
+            <div class="card p-4 mb-4" data-aos="fade-up">
+                <h4>{{ iteration.title }}</h4>
+                <p class="text-muted">{{ iteration.description }}</p>
+                <div class="row g-3 mt-3">
+                    <div class="col-md-6">
+                        <span class="badge bg-danger mb-2">{% trans "Before" %}</span>
+                        {% if iteration.before_image %}
+                            <img src="{{ iteration.before_image.url }}" alt="Before" class="w-100 rounded">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        <span class="badge bg-success mb-2">{% trans "After" %}</span>
+                        {% if iteration.after_image %}
+                            <img src="{{ iteration.after_image.url }}" alt="After" class="w-100 rounded">
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="bg-accent-light rounded p-3 mt-3">
+                    <strong>{% trans "Reason for change" %}:</strong> {{ iteration.reason }}
+                </div>
+            </div>
+        {% empty %}
+            <div class="text-center py-5">
+                <i class="fas fa-sync fa-3x text-muted mb-3"></i>
+                <p class="text-muted">{% trans "No design iterations recorded yet." %}</p>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
