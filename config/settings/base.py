@@ -1,4 +1,4 @@
-import os
+﻿import os
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 
@@ -174,8 +174,6 @@ JAZZMIN_UI_TWEAKS = {
     },
     "actions_sticky_top": True,
 }
-
-
 
 TEMPLATES = [
     {

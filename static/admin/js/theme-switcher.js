@@ -1,4 +1,4 @@
-﻿/**
+/**
  * JAZZMIN THEME SWITCHER
  * IT.CO.TZ Inspired Dark/Light Mode Toggle
  */
