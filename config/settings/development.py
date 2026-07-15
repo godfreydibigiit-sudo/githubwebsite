@@ -2,7 +2,7 @@
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['hci.pythonanywhere.com','127.0.0.1']
+ALLOWED_HOSTS = ['hciwebsite.pythonanywhere.com','127.0.0.1']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

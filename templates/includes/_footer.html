@@ -63,8 +63,8 @@
                     <h6 class="footer-heading"><i class="fas fa-university me-2"></i> {% trans "Institution" %}</h6>
                     <div class="footer-contact">
                         <div class="footer-contact-item"><i class="fas fa-building"></i><span>{{ site_settings.university|default:'Institute of Finance Management' }}</span></div>
-                        <div class="footer-contact-item"><i class="fas fa-graduation-cap"></i><span>{{ site_settings.faculty|default:'Faculty of Computing, Information Systems and Mathematics' }}</span></div>
-                        <div class="footer-contact-item"><i class="fas fa-book"></i><span>{{ site_settings.programme|default:'BSc. Computer Science / BSc. Information Technology' }}</span></div>
+                        <div class="footer-contact-item"><i class="fas fa-graduation-cap"></i><span>{{ site_settings.faculty|default:'Faculty of Computing and Mathematics' }}</span></div>
+                        <div class="footer-contact-item"><i class="fas fa-book"></i><span>{{ site_settings.programme|default:' BSc. Information Technology' }}</span></div>
                     </div>
                     <a href="{% url 'team:list' %}" class="footer-team-btn mt-3">
                         <i class="fas fa-users me-2"></i> {% trans "Meet Our Team" %} <i class="fas fa-arrow-right ms-2"></i>
@@ -86,7 +86,7 @@
                     <div class="footer-bottom-links">
                         <a href="#" class="back-to-top-link"><i class="fas fa-arrow-up me-1"></i> {% trans "Back to Top" %}</a>
                         <span class="footer-separator">|</span>
-                        <span class="footer-made-with">{% trans "Made with" %} <i class="fas fa-heart text-pink mx-1"></i> {% trans "by IFM HCI Team" %}</span>
+                        <span class="footer-made-with">{% trans "Made with" %} <i class="fas fa-heart text-pink mx-1"></i> {% trans "by Stream A HCI Team" %}</span>
                     </div>
                 </div>
             </div>
